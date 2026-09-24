@@ -94,6 +94,21 @@ describe('Text Input rules service', () => {
     expect(tirs.FuzzyEquals('abc', RULE_INPUT)).toBe(false);
     expect(tirs.FuzzyEquals('dbc deg', RULE_INPUT)).toBe(false);
     expect(tirs.FuzzyEquals('ghi jkl', RULE_INPUT)).toBe(false);
+    expect(tirs.FuzzyEquals('', RULE_INPUT)).toBe(false);
+    expect(tirs.FuzzyEquals('   ', RULE_INPUT)).toBe(false);
+    expect(tirs.FuzzyEquals('\t', RULE_INPUT)).toBe(false);
+
+    const ruleInputOneChar: TextInputRuleInputs = {
+      x: {
+        contentId: 'rule_input',
+        normalizedStrSet: ['5'],
+      },
+      contentId: null,
+    };
+    expect(tirs.FuzzyEquals('', ruleInputOneChar)).toBe(false);
+    expect(tirs.FuzzyEquals('   ', ruleInputOneChar)).toBe(false);
+    expect(tirs.FuzzyEquals('\t', ruleInputOneChar)).toBe(false);
+    expect(tirs.FuzzyEquals('5', ruleInputOneChar)).toBe(true);
 
     expect(tirs.FuzzyEquals('ABC DEF', RULE_INPUT_PLURAL)).toBe(true);
     expect(tirs.FuzzyEquals('abc def', RULE_INPUT_PLURAL)).toBe(true);
