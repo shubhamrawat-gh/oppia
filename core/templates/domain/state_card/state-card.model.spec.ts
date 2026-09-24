@@ -331,6 +331,12 @@ describe('State card object factory', () => {
     simulateInteraction('');
     expect(_sampleCard1.showNoResponseError()).toBeTrue();
 
+    simulateInteraction('   ');
+    expect(_sampleCard1.showNoResponseError()).toBeTrue();
+
+    simulateInteraction('\t');
+    expect(_sampleCard1.showNoResponseError()).toBeTrue();
+
     simulateInteraction('ans');
     expect(_sampleCard1.showNoResponseError()).toBeFalse();
 
