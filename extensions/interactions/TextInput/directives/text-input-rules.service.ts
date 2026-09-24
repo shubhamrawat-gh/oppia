@@ -36,6 +36,9 @@ export class TextInputRulesService {
 
   FuzzyEquals(answer: TextInputAnswer, inputs: TextInputRuleInputs): boolean {
     const normalizedAnswer = this.nws.transform(answer).toLowerCase();
+    if (normalizedAnswer === '') {
+      return false;
+    }
     const normalizedInput = inputs.x.normalizedStrSet.map(input =>
       this.nws.transform(input).toLowerCase()
     );
